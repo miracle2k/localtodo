@@ -1,17 +1,4 @@
 #!/usr/bin/env python
-"""I like to have a LOCAL_TODO file for each of my programming projects
-that is not under version control and that serves as a whiteboard for notes,
-and ideas. It also like to put a "next steps" list there as a quick brain
-refresh for when I come back to the project after some time.
-
-Because these files are  not under version control, I use Dropbox to sync them
-across machines (also serves as a backup).
-
-What this script does is create such a file in a shared folder (this is a
-folder that would be managed by Dropbox), and then links this file into the
-current directory. If there is already a LOCAL_TODO file in the current
-directory, it will be moved to the shared folder.
-"""
 
 import os
 import sys
