@@ -23,7 +23,7 @@ current directory.
 How to use
 ----------
 
-Install via:
+Install via::
 
     $ easy_install localtodo
 
@@ -45,7 +45,6 @@ In your project directory, run::
         ./LOCAL_TODO --> ~/Dropbox/todofiles/myproject
 
 .. note::
-
     The ``--to`` argument is only required the first time and is
     cached in ``~/.localtodo``.
 
@@ -75,7 +74,7 @@ different machine, you again run the script::
 Multiple todo files for one project
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-It's possible to create **sub-todos**::
+It's possible to create ***sub-todos***::
 
     $ localtodo -s docs
     Creating new empty file ~/Dropbox/todos/myproject.docs
