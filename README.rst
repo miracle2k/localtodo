@@ -44,9 +44,8 @@ In your project directory, run::
     I have established the following links for you:
         ./LOCAL_TODO --> ~/Dropbox/todofiles/myproject
 
-.. note::
-    The ``--to`` argument is only required the first time and is
-    cached in ``~/.localtodo``.
+Note: The ``--to`` argument is only required the first time and is
+cached in ``~/.localtodo``.
 
 As you can see, this created a new file in your chosen folder, and
 created a link to it in the current directory.
@@ -74,7 +73,7 @@ different machine, you again run the script::
 Multiple todo files for one project
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-It's possible to create ***sub-todos***::
+It's possible to create **sub-todos**::
 
     $ localtodo -s docs
     Creating new empty file ~/Dropbox/todos/myproject.docs
