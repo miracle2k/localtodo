@@ -182,5 +182,9 @@ def sync_todo(env, project, subfile=None):
     env['established_links'].append((source_file, target_file))
 
 
-if __name__ == '__main__':
+def run():
     sys.exit(main(sys.argv) or 0)
+
+
+if __name__ == '__main__':
+    run()
