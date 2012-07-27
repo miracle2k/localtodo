@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-from setuptools import setup, find_packages
+from setuptools import setup
 
 
 setup(
@@ -14,6 +14,7 @@ setup(
     description=
         '.gitignore local todo files, but sync them through Dropbox.',
     py_modules=['localtodo'],
+    install_requires=['docopt==0.4.1'],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
