@@ -152,8 +152,7 @@ def sync_todo(env, project, subfile=None):
         raise ExitCodeError(2)
 
     # If there is a local file, move it to the target
-    if path.exists(source_file):
-        assert not path.islink(source_file)  # TODO: transparently replace links
+    if path.exists(source_file) and not path.islink(source_file):
         print 'Moving %s to %s' % (source_file, target_file)
         os.rename(source_file, target_file)
     elif not path.exists(target_file):
@@ -164,6 +163,11 @@ def sync_todo(env, project, subfile=None):
         print 'Found existing file %s' % (target_file,)
 
     # Create the link
+    #
+    # If the current file is already a link, simply replace it.
+    if path.islink(source_file):
+        os.unlink(source_file)
+        print "Replacing existing link %s with new target" % source_file
     # To use the relative path: path.relpath(target_file, path.dirname(source_file))
     os.symlink(path.abspath(target_file), source_file)
     env['established_links'].append((source_file, target_file))
