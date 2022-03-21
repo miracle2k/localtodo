@@ -60,8 +60,8 @@ def main(argv):
     # Determine target directory
     target_directory = args['--to'] or config.get('directory', None)
     if not target_directory:
-        print 'You need to use --to at least once to tell me where '\
-              'to store the todo files.'
+        print('You need to use --to at least once to tell me where '\
+              'to store the todo files.')
         return 1
     else:
         config['directory'] = target_directory
@@ -74,7 +74,7 @@ def main(argv):
         if args['--sub']:
             target_file = "%s.%s" % (target_file,  args['--sub'])
         if not path.exists(target_file):
-            print 'Error: No such file: %s' % target_file
+            print('Error: No such file: %s' % target_file)
             return 2
         os.unlink(target_file)
         return
@@ -102,14 +102,14 @@ def main(argv):
                 sync_todo(env, project, sub)
             for sub in findsubs(SUBFILE_NAME % '*'):
                 sync_todo(env, project, sub)
-    except ExitCodeError, e:
+    except ExitCodeError as e:
         return e.code
 
     # Print summery of state
-    print
-    print "I have established the following links for you:"
+    print()
+    print("I have established the following links for you:")
     for source, target in set(env['established_links']):
-        print '  %s --> %s' % (source, target)
+        print('  %s --> %s' % (source, target))
 
 
 def findsubs(expr):
@@ -146,28 +146,28 @@ def sync_todo(env, project, subfile=None):
         if path.realpath(source_file) == target_file:
             env['established_links'].append((source_file, target_file))
             return
-        print '%s exists, but so does %s\nMaybe you want to call with '\
+        print('%s exists, but so does %s\nMaybe you want to call with '\
               '"--delete %s" to delete the target.' % (
-                  target_file, source_file, project)
+                  target_file, source_file, project))
         raise ExitCodeError(2)
 
     # If there is a local file, move it to the target
     if path.exists(source_file) and not path.islink(source_file):
-        print 'Moving %s to %s' % (source_file, target_file)
+        print('Moving %s to %s' % (source_file, target_file))
         os.rename(source_file, target_file)
     elif not path.exists(target_file):
-        print 'Creating new empty file %s' % (target_file,)
+        print('Creating new empty file %s' % (target_file,))
         with open(target_file, 'w'):
             pass
     else:
-        print 'Found existing file %s' % (target_file,)
+        print('Found existing file %s' % (target_file,))
 
     # Create the link
     #
     # If the current file is already a link, simply replace it.
     if path.islink(source_file):
         os.unlink(source_file)
-        print "Replacing existing link %s with new target" % source_file
+        print("Replacing existing link %s with new target" % source_file)
     # To use the relative path: path.relpath(target_file, path.dirname(source_file))
     os.symlink(path.abspath(target_file), source_file)
     env['established_links'].append((source_file, target_file))
